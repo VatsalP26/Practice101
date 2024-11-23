@@ -51,4 +51,22 @@ class InventoryServiceApplicationTests {
                 .body(Matchers.equalTo("true")); // Adjust if needed based on actual response format
     }
 
+        /*@Test
+    void checkInventoryOutOfStockTest() {
+        // BDD-style test for the isInStock endpoint when an item is out of stock
+        String skuCode = "SKU002";
+        int quantity = 10;
+
+        RestAssured.given()
+                .contentType("application/json")
+                .queryParam("skuCode", skuCode)
+                .queryParam("quantity", quantity)
+                .when()
+                .get("/api/inventory")
+                .then()
+                .log().all()
+                .statusCode(200)
+                .body(Matchers.equalTo("false")); // Adjust based on expected response
+    }*/
+
 }

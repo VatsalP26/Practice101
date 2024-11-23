@@ -32,7 +32,7 @@ public class Routes {
         log.info("Initializing product service route with URL: {}", productServiceUrl);
 
         return GatewayRouterFunctions.route("product_service")
-                .route(RequestPredicates.path("/api/product"), request -> {
+                .route(RequestPredicates.path("/api/product/**"), request -> {
 
                     log.info("Received request for product-service: {} ", request.uri());
 
@@ -95,7 +95,7 @@ public class Routes {
     public RouterFunction<ServerResponse> productServiceSwaggerRoute(){
         return GatewayRouterFunctions.route("product_service_swagger")
                 .route(RequestPredicates.path("/aggregate/product-service/v3/api-docs"),
-                        HandlerFunctions.http("http://localhost:8083"))
+                        HandlerFunctions.http(productServiceUrl))
                 .filter(setPath("/api-docs"))
                 .build();
 
@@ -105,7 +105,7 @@ public class Routes {
     public RouterFunction<ServerResponse> orderServiceSwaggerRoute(){
         return GatewayRouterFunctions.route("order_service_swagger")
                 .route(RequestPredicates.path("/aggregate/order-service/v3/api-docs"),
-                        HandlerFunctions.http("http://localhost:8082"))
+                        HandlerFunctions.http(orderServiceUrl))
                 .filter(setPath("/api-docs"))
                 .build();
 
@@ -115,7 +115,7 @@ public class Routes {
     public RouterFunction<ServerResponse> inventoryServiceSwaggerRoute(){
         return GatewayRouterFunctions.route("inventory_service_swagger")
                 .route(RequestPredicates.path("/aggregate/inventory-service/v3/api-docs"),
-                        HandlerFunctions.http("http://localhost:8086"))
+                        HandlerFunctions.http(inventoryServiceUrl))
                 .filter(setPath("/api-docs"))
                 .build();
 

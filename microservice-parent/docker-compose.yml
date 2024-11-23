@@ -29,7 +29,7 @@ services:
       ROOT_LOGLEVEL: DEBUG
       JBOSS_LOG_MANAGER_ROOT_LOGGER: DEBUG, stdout, FILE
     ports:
-      - "8078:8080"  #try to take the official default port 8080, it wasn't available for me so I changed it to 8081.
+      - "8080:8080"  #try to take the official default port 8080, it wasn't available for me so I changed it to 8081.
     volumes:
       - ./local-docker-file/keycloak/realms/:/opt/keycloak/data/import
     depends_on:
@@ -40,7 +40,7 @@ services:
   api-gateway:
     image: api-gateway
     ports:
-      - "9001:9000"
+      - "9000:9000"
     build:
       context: ./api-gateway
       dockerfile: ./Dockerfile
